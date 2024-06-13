@@ -1,0 +1,74 @@
+jamesdanielmarrsritchey: Using Javascript, write a function which gets the current pixel location of the mouse pointer on a webpage, nad returns it.
+
+GitHub Copilot: ```javascript
+function getMousePosition() {
+  // Initialize an object to store the x and y coordinates
+  const position = { x: 0, y: 0 };
+
+  // Add an event listener to the document to capture mousemove events
+  document.addEventListener('mousemove', (event) => {
+    // Update the position object with the current mouse coordinates
+    position.x = event.clientX;
+    position.y = event.clientY;
+  });
+
+  // Return a function that when called, returns the current mouse position
+  return () => position;
+}
+
+// Usage
+const getCurrentMousePosition = getMousePosition();
+// Now, whenever you need the current mouse position, you can call getCurrentMousePosition()
+// Example: console.log(getCurrentMousePosition());
+```
+
+jamesdanielmarrsritchey: What would an example return look like?
+
+GitHub Copilot: ```plaintext
+{ x: 102, y: 384 }
+```
+
+jamesdanielmarrsritchey: How can I track the mouse position continuously on a webpage using JavaScript?
+
+GitHub Copilot: ```javascript
+// Define a function to continuously track the mouse position
+function trackMousePosition() {
+  // Create an object to hold the current mouse position
+  const position = { x: 0, y: 0 };
+
+  // Update the position object whenever the mouse moves
+  document.addEventListener('mousemove', (event) => {
+    position.x = event.clientX;
+    position.y = event.clientY;
+    // Optionally, display the current mouse position
+    console.log(`Mouse Position: x=${position.x}, y=${position.y}`);
+  });
+}
+
+// Call the function to start tracking
+trackMousePosition();
+```
+
+jamesdanielmarrsritchey: The function should update the innerHTML of a specified element with the current position.
+
+GitHub Copilot: ```javascript
+function trackMousePositionAndUpdateElement(elementId) {
+  // Find the element by its ID
+  const element = document.getElementById(elementId);
+
+  // Check if the element exists
+  if (!element) {
+    console.error('Element not found');
+    return;
+  }
+
+  // Update the element's innerHTML with the current mouse position
+  document.addEventListener('mousemove', (event) => {
+    const positionText = `Mouse Position: x=${event.clientX}, y=${event.clientY}`;
+    element.innerHTML = positionText;
+  });
+}
+
+// Example usage: trackMousePositionAndUpdateElement('mousePositionDisplay');
+// Make sure there's an element with the ID 'mousePositionDisplay' in your HTML.
+```
